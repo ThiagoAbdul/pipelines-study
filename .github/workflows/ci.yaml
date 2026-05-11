@@ -11,7 +11,7 @@ env:
 
 jobs:
 
-  validate:
+  build:
 
     runs-on: ubuntu-latest
 
@@ -23,50 +23,12 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
-
-      - run: |
-          npm -v
-          node -v
 
       - run: npm ci
 
       - run: npm run typecheck
 
       - run: npm run lint
-
-  # test:
-
-  #   needs: validate
-
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-
-  #     - uses: actions/checkout@v4
-
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: ${{ env.NODE_VERSION }}
-  #         cache: npm
-
-  #     - run: npm ci
-
-  #     - run: npm run test -- --run
-
-  build:
-
-    needs: validate
-
-    runs-on: ubuntu-latest
-
-    steps:
-
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
 
       - run: npm ci
 
@@ -103,7 +65,7 @@ jobs:
       - name: Read parameter
         run: |
           DISTRIBUTION_ID=$(aws ssm get-parameter \
-            --name "/frontend/prod/cloudfront-id" \
+            --name "/dev/frontend/cdn-id" \
             --query "Parameter.Value" \
             --output text)
 
