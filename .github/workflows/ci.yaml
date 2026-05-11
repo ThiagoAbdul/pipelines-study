@@ -100,10 +100,17 @@ jobs:
           name: frontend-dist
           path: dist/
 
-      - run: ls -la
+      - name: Read parameter
+        run: |
+          DISTRIBUTION_ID=$(aws ssm get-parameter \
+            --name "/frontend/prod/cloudfront-id" \
+            --query "Parameter.Value" \
+            --output text)
+
+          echo $DISTRIBUTION_ID
 
       - run: aws s3 sync ./dist s3://app.front-dev-abdul.dev.br --delete
       - run: >
           aws cloudfront create-invalidation 
-          --distribution-id E2ACPPGDUC39FE 
+          --distribution-id $(DISTRIBUTION_ID) 
           --paths "/index.html"
