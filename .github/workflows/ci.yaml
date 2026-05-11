@@ -24,6 +24,10 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
+      - run: |
+          npm -v
+          node -v
+
       - run: npm ci
 
       - run: npm run typecheck

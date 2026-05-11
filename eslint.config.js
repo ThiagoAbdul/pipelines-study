@@ -13,11 +13,7 @@ export default defineConfig([
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
-      reactRefresh.configs.vite,
-      {
-        "no-console": "warn",        // Avisa se você esquecer um console.log
-        "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }] // Erro para vars não usadas, exceto se começarem com _
-      }
+      reactRefresh.configs.vite
     ],
     languageOptions: {
       globals: globals.browser,
