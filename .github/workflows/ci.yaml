@@ -71,5 +71,5 @@ jobs:
       - run: aws s3 sync ./dist s3://app.front-dev-abdul.dev.br --delete
       - run: >
           aws cloudfront create-invalidation 
-          --distribution-id $(DISTRIBUTION_ID) 
+          --distribution-id ${DISTRIBUTION_ID} 
           --paths "/index.html"
