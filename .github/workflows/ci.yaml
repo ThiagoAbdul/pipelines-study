@@ -64,9 +64,9 @@ jobs:
 
       - name: Read parameter
         run: |
-          DISTRIBUTION_ID=$(aws ssm get-parameter \
-            --name "/dev/frontend/cdn-id" \
-            --query "Parameter.Value" \
+          DISTRIBUTION_ID=$(aws ssm get-parameter
+            --name "/dev/front/cdn-id"
+            --query "Parameter.Value"
             --output text)
 
           echo $DISTRIBUTION_ID
