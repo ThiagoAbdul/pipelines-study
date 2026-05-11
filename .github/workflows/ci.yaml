@@ -6,6 +6,9 @@ on:
       - staging
   workflow_dispatch:
 
+env:
+  NODE_VERSION: 24
+
 jobs:
 
   validate:
@@ -18,7 +21,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
       - run: npm ci
@@ -39,7 +42,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
       - run: npm ci
@@ -58,7 +61,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: ${{ env.NODE_VERSION }}
           cache: npm
 
       - run: npm ci
