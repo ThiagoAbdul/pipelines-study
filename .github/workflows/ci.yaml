@@ -63,7 +63,7 @@ jobs:
           path: dist/
 
       - name: Read parameter
-        run: |
+        run: >
           DISTRIBUTION_ID=$(aws ssm get-parameter
             --name "/dev/front/cdn-id"
             --query "Parameter.Value"
